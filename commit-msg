@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+LC_ALL=C
+
+local_branch="$(git rev-parse --abbrev-ref HEAD)"
+feature_name="$(cut -d'/' -f2 <<<"$local_branch")"
+valid_msg_regex="^$feature_name .+"
+
+INPUT_FILE=$1
+START_LINE=`head -n1 $INPUT_FILE`
+if ! [[ "$START_LINE" =~ $valid_msg_regex ]]; then
+  echo "Bad commit message, see example: '$feature_name commit message'"
+  exit 1
+fi
+
+exit 0
