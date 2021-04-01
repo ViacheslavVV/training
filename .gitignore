@@ -1,5 +1,7 @@
 .idea
+*.iml
 gs-maven.iml
+/webapp/target/
 # Compiled class file
 *.class
 
