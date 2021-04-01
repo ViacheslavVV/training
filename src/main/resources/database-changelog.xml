@@ -1,0 +1,38 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <!--  Это изменения в бд в порядке их применения, если они уже были применены,
+          то в базе уже есть об этом запись и они пропускаются -->
+
+    <!-- Можно добавлять из файла изменения (но всё можно написать почти не прибегая к sql файлам), см.2-->
+    <changeSet id="1" author="Slava">
+        <sqlFile path="sql/create_schema.sql" encoding="UTF-8"/>
+    </changeSet>
+
+    <!-- можно использовать синтаксис самого движка liquibase (xml теги), он сам сгенерит код -->
+    <changeSet id="2" author="Slava">
+        <createSequence schemaName="MYDB" sequenceName="ID_SEQUENCE" startValue="1" incrementBy="1" cycle="true"/>
+    </changeSet>
+
+    <!-- Пока для начала будем использовать файлы -->
+    <changeSet id="3" author="Slava">
+        <sqlFile path="sql/create_book_table.sql" encoding="UTF-8"/>
+    </changeSet>
+
+    <!-- И для примера генерация стабовых записей -->
+    <changeSet id="4" author="Slava">
+        <insert schemaName="mydb" tableName="Book">
+            <column name="id" valueSequenceNext="mydb.ID_SEQUENCE"/>
+            <column name="name" value="Book1"/>
+            <column name="author" value="author1"/>
+        </insert>
+        <insert schemaName="mydb" tableName="Book">
+            <column name="id" valueSequenceNext="mydb.ID_SEQUENCE"/>
+            <column name="name" value="Book2"/>
+            <column name="author" value="author2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

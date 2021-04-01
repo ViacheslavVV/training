@@ -1,0 +1,5 @@
+create table MYDB.BOOK (
+    ID BIGINT UNIQUE NOT NULL,
+    NAME VARCHAR(100),
+    AUTHOR VARCHAR(100)
+);
