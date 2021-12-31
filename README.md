@@ -1,2 +1,2 @@
 # training
-first Jenya's project 
+RUN main , open created file
